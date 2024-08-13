@@ -14,7 +14,8 @@ function Home(props) {
       <div className=" w-[85%] p-10 pt-[5%] flex flex-wrap overflow-x-hidden overflow-y-auto">
         {products.map((p, i) => (
           <Link
-            to="/details/1"
+            key={p.id}
+            to={`/details/${p.id}`}
             className="card mr-3 mb-3 w-[18%] h-[30vh] p-5 border shadow rounded flex flex-col justify-center items-center"
           >
             <div

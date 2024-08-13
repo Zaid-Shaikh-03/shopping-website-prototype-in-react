@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "./axios";
 import React, { createContext, useEffect, useState } from "react";
 export const ProductContext = createContext();
 function Context(props) {
@@ -6,7 +6,7 @@ function Context(props) {
 
   const getProducts = async () => {
     try {
-      const { data } = await axios("/products/");
+      const { data } = await axios("/products");
       console.log(data);
 
       setProducts(data);
