@@ -24,7 +24,7 @@ function Home(props) {
   };
 
   useEffect(() => {
-    if (!filterProducts) setFilterProducts(products);
+    if (!filterProducts || category == "undefined") setFilterProducts(products);
     if (category != "undefined") {
       getProductCategory();
     }
@@ -33,7 +33,7 @@ function Home(props) {
   return products ? (
     <div className="w-full h-screen flex">
       <Nav />
-      <div className=" w-[85%] p-10 pt-[5%] flex flex-wrap overflow-x-hidden overflow-y-auto">
+      <div className=" w-[85%] p-10 pt-[7%] flex flex-wrap overflow-x-hidden overflow-y-auto">
         {filterProducts &&
           filterProducts.map((p, i) => (
             <Link
