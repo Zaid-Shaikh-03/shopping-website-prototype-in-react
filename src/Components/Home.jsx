@@ -15,7 +15,7 @@ function Home(props) {
   const getProductCategory = async () => {
     try {
       const { data } = await axios.get(`/products/category/${category}`);
-      console.log(data);
+      // console.log(data);
 
       setFilterProducts(data);
     } catch (error) {
