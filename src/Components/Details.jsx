@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { json, Link, useNavigate, useParams } from "react-router-dom";
 // import axios from "../utils/axios";
 import Loading from "./Loading";
 import { ProductContext } from "../utils/Context";
 
 function Details(props) {
+  const navigate = useNavigate();
   const [products, setProducts] = useContext(ProductContext);
   const { id } = useParams();
   const [product, setProduct] = useState(null);
@@ -27,6 +28,13 @@ function Details(props) {
     // getSingleProduct();
   }, []);
 
+  const ProductdeleteHandler = (i) => {
+    const FilterProduct = products.filter((p) => p.id !== i);
+    setProducts(FilterProduct);
+    localStorage.setItem("products", JSON.stringify(FilterProduct));
+    navigate("/");
+  };
+
   return product ? (
     <div className="w-[70%] flex h-screen justify-between   items-center m-auto p-[10%]">
       <img
@@ -42,9 +50,12 @@ function Details(props) {
         <Link className="mr-5 py-2 px-5 border rounded border-blue-200 text-blue-300">
           Edit
         </Link>
-        <Link className="py-2 px-5 border rounded border-red-200 text-red-300">
+        <button
+          onClick={() => ProductdeleteHandler(product.id)}
+          className="py-2 px-5 border rounded border-red-200 text-red-300"
+        >
           Delete
-        </Link>
+        </button>
       </div>
     </div>
   ) : (
