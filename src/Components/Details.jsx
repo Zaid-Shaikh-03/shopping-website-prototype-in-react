@@ -3,6 +3,7 @@ import { json, Link, useNavigate, useParams } from "react-router-dom";
 // import axios from "../utils/axios";
 import Loading from "./Loading";
 import { ProductContext } from "../utils/Context";
+import { toast } from "react-toastify";
 
 function Details(props) {
   const navigate = useNavigate();
@@ -32,6 +33,7 @@ function Details(props) {
     const FilterProduct = products.filter((p) => p.id !== i);
     setProducts(FilterProduct);
     localStorage.setItem("products", JSON.stringify(FilterProduct));
+    toast.success("Product deleted successfully");
     navigate("/");
   };
 

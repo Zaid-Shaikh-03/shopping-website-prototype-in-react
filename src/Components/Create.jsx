@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { ProductContext } from "../utils/Context";
 import { nanoid } from "nanoid";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function Create(props) {
   const navigate = useNavigate();
@@ -36,6 +37,7 @@ function Create(props) {
     };
     setProducts([...products, product]);
     localStorage.setItem("products", JSON.stringify([...products, product]));
+    toast.success("Product added successfully");
     navigate("/");
   };
 

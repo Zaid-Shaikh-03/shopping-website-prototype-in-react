@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { ProductContext } from "../utils/Context";
 import { nanoid } from "nanoid";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function Edit(props) {
   const [products, setProducts] = useContext(ProductContext);
@@ -28,7 +29,7 @@ function Edit(props) {
       product.title.trim().length < 5 ||
       product.image.trim().length < 5 ||
       product.category.trim().length < 5 ||
-      product.price.trim().length < 1 ||
+      product.price.length < 1 ||
       product.description.trim().length < 5
     ) {
       alert("Each and every input must have atleast 4 character");
@@ -42,6 +43,7 @@ function Edit(props) {
 
     setProducts(copyData);
     localStorage.setItem("products", JSON.stringify(copyData));
+    toast.success("Product Edit successfully");
     navigate(-1);
   };
 
